@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Pet from "./Pet";
+import useBreedList from "../hooks/useBreedList";
 
-interface Pet {
+interface IPetProps {
   id: number;
   name: string;
   animal: string;
@@ -14,8 +15,8 @@ const SearchParams = () => {
   const [location, setLocation] = useState("");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
-  const [pets, setPets] = useState<Pet[]>([]);
-  const breeds: string[] = [];
+  const [pets, setPets] = useState<IPetProps[]>([]);
+  const [breeds] = useBreedList(animal);
 
   const url = `https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`;
 
@@ -41,7 +42,7 @@ const SearchParams = () => {
     try {
       const res = await fetch(url);
       const json = await res.json();
-      setPets(json.pets as Pet[]);
+      setPets(json.pets as IPetProps[]);
     } catch (error) {
       console.error("Failed to fetch pets:", error);
       setPets([]);
