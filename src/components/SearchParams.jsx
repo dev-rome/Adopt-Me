@@ -2,43 +2,32 @@ import { useState, useEffect } from "react";
 import useBreedList from "../hooks/useBreedList";
 import Results from "./Results";
 
-interface IPetProps {
-  id: number;
-  name: string;
-  animal: string;
-  breed: string;
-  images: string[];
-  location: string;
-  city: string;
-  state: string;
-}
-
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
   const [location, setLocation] = useState("");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
-  const [pets, setPets] = useState<IPetProps[]>([]);
+  const [pets, setPets] = useState([]);
   const [breeds] = useBreedList(animal);
 
   const url = `https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     requestPets();
   };
 
-  const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLocationChange = (e) => {
     setLocation(e.target.value);
   };
 
-  const handleAnimalChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleAnimalChange = (e) => {
     setAnimal(e.target.value);
     setBreed("");
   };
 
-  const handleBreedChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleBreedChange = (e) => {
     setBreed(e.target.value);
   };
 
@@ -46,7 +35,7 @@ const SearchParams = () => {
     try {
       const res = await fetch(url);
       const json = await res.json();
-      setPets(json.pets as IPetProps[]);
+      setPets(json.pets);
     } catch (error) {
       console.error("Failed to fetch pets:", error);
       setPets([]);

@@ -1,15 +1,6 @@
 import { Link } from "react-router-dom";
 
-interface IPetProps {
-  id: number;
-  name: string;
-  animal: string;
-  breed: string;
-  images: string[];
-  location: string;
-}
-
-const Pet = ({ name, animal, breed, images, location, id }: IPetProps) => {
+const Pet = ({ name, animal, breed, images, location, id }) => {
   let hero = "http://pets-images.dev-apis.com/pets/none.jpg";
 
   if (images.length) {

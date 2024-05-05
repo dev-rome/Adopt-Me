@@ -1,4 +1,4 @@
-const fetchPet = async ({ queryKey }: { queryKey: any[] }) => {
+const fetchPet = async ({ queryKey }) => {
     const id = queryKey[1];
     const apiRes = await fetch(`https://pets-v2.dev-apis.com/pets?id=${id}`);
 
