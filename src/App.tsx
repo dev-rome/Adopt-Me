@@ -1,5 +1,4 @@
 import "./App.css";
-import Pet from "./components/Pet";
 import SearchParams from "./components/SearchParams";
 
 function App() {
