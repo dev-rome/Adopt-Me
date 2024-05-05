@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
 
-interface LocalCache {
-  [key: string]: string[];
-}
+const localCache = {};
 
-const localCache: LocalCache = {};
-
-export default function useBreedList(animal: string): [string[], string] {
-  const [breedList, setBreedList] = useState<string[]>([]);
-  const [status, setStatus] = useState<string>("unloaded");
+export default function useBreedList(animal) {
+  const [breedList, setBreedList] = useState([]);
+  const [status, setStatus] = useState("unloaded");
 
   useEffect(() => {
     if (!animal) {
