@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
-import Pet from "./Pet";
 import useBreedList from "../hooks/useBreedList";
+import Results from "./Results";
 
 interface IPetProps {
   id: number;
   name: string;
   animal: string;
   breed: string;
+  images: string[];
+  location: string;
+  city: string;
+  state: string;
 }
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
@@ -51,7 +55,7 @@ const SearchParams = () => {
 
   useEffect(() => {
     requestPets();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -101,15 +105,7 @@ const SearchParams = () => {
         <button type="submit">Submit</button>
       </form>
 
-      {pets.map((pet) => (
-        <Pet
-          name={pet.name}
-          animal={pet.animal}
-          breed={pet.breed}
-          key={pet.id}
-          id={pet.id}
-        />
-      ))}
+      <Results pets={pets} />
     </div>
   );
 };

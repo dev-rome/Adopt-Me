@@ -1,11 +1,13 @@
 interface IPetProps {
+  id: number;
   name: string;
   animal: string;
   breed: string;
-  id: number;
+  images: string[];
+  location: string;
 }
 
-const Pet = ({ name, animal, breed }: IPetProps) => {
+const Pet = ({ name, animal, breed, images, location, id }: IPetProps) => {
   return (
     <div>
       <h1>{name}</h1>
