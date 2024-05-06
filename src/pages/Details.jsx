@@ -24,7 +24,6 @@ const Details = () => {
       <h2>
         {pet.animal} - {pet.breed} - {pet.city}, {pet.state}
       </h2>
-      <img src={pet.images[0]} alt={pet.name} />
       <p>{pet.description}</p>
       <button>Adopt {pet.name}</button>
     </div>
