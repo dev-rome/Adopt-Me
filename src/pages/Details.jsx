@@ -4,7 +4,7 @@ import fetchPet from "../services/fetchPet";
 
 const Details = () => {
   const { id } = useParams();
-  const results = useQuery(["details", id], fetchPet);
+  const results = useQuery({ queryKey: ["details", id], queryFn: fetchPet });
 
   if (results.isLoading) {
     return (
@@ -24,6 +24,7 @@ const Details = () => {
       </h2>
       <img src={pet.images[0]} alt={pet.name} />
       <p>{pet.description}</p>
+      <button>Adopt {pet.name}</button>
     </div>
   );
 };
